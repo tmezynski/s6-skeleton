@@ -1,0 +1,10 @@
+default:
+  suites:
+    base:
+      paths: [ '%paths.base%/../../test/acceptance' ]
+      contexts:
+        - acceptance\bootstrap\BaseContext
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: \App\Kernel

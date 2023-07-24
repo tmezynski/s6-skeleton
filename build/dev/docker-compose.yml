@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:alpine3.17
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../../var/log/nginx:/var/log/nginx
+    working_dir: ${PROJECT_ROOT}
+    ports:
+      - "8080:80"
+    networks:
+      - php_net
+    env_file: .env
+    depends_on:
+      - php
+  php:
+    build:
+      context: ./php
+    user: ${USER_ID}:${GROUP_ID}
+    env_file: .env
+    volumes:
+      - ../../:${PROJECT_ROOT}
+    working_dir: ${PROJECT_ROOT}
+    networks:
+      - php_net
+      - pgsql_net
+
+networks:
+  php_net:
+  pgsql_net:
