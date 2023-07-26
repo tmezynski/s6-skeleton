@@ -249,7 +249,6 @@
 
     <rule ref="Zend.Debug.CodeAnalyzer"/>
     <rule ref="Zend.Files.ClosingTag"/>
-    <rule ref="Zend.NamingConventions.ValidVariableName"/>
 
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
     <rule ref="SlevomatCodingStandard.Arrays.MultiLineArrayEndBracketPlacement"/>

@@ -7,4 +7,4 @@ default:
   extensions:
     FriendsOfBehat\SymfonyExtension:
       kernel:
-        class: \App\Kernel
+        class: \Shared\Kernel

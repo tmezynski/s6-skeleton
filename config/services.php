@@ -10,6 +10,4 @@ return static function (ContainerConfigurator $container): void {
     $services->defaults()
         ->autowire(false)
         ->autoconfigure(false);
-
-    $services->load('acceptance\\bootstrap\\', '../test/acceptance/bootstrap');
 };
