@@ -8,5 +8,5 @@ return static function(ContainerConfigurator $container): void
 {
     $services = $container->services();
     $services
-        ->load('acceptance\\bootstrap\\', '../../test/acceptance/bootstrap');
+        ->load('acceptance\\bootstrap\\', '%kernel.project_dir%/test/acceptance/bootstrap');
 };
