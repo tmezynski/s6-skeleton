@@ -5,6 +5,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ../../var/log/nginx:/var/log/nginx
+      - ../../:${PROJECT_ROOT}
     working_dir: ${PROJECT_ROOT}
     ports:
       - "8080:80"
