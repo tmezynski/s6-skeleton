@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace integration;
 
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * @coversNothing
  */
-final class IntegrationTest extends TestCase
+final class IntegrationTest extends KernelTestCase
 {
     public function test(): void
     {

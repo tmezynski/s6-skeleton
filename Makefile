@@ -20,8 +20,15 @@ rebuild:
 nginx-sh:
 	$(DC) exec nginx sh
 
+bash: php-sh
 php-sh:
 	$(DC) exec php sh
+
+new-migration:
+	$(DC) exec php $(PHP_NO_DEBUG) ./bin/console doctrine:migration:generate
+
+migrate:
+	$(DC) exec php $(PHP_NO_DEBUG) ./bin/console doctrine:migration:migrate
 
 ########################################################################################################################
 #################################################### TESTS #############################################################

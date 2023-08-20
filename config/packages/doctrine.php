@@ -2,45 +2,31 @@
 
 declare(strict_types=1);
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Symfony\Config\DoctrineConfig;
 
 return static function(DoctrineConfig $doctrine): void
 {
-    $dbal = $doctrine->dbal();
+    $doctrine
+        ->dbal()
+            ->connection('default')
+            ->driver(env('DB_DRIVER'))
+            ->host(env('DB_HOST'))
+            ->dbname(env('DB_NAME'))
+            ->user(env('DB_USER'))
+            ->password(env('DB_PASSWORD'))
+            ->serverVersion(env('DB_SERVER_VERSION'))
+            ->charset(env('DB_CHARSET'));
 
-    $dbal->defaultConnection('default');
+    $doctrine
+        ->orm()
+            ->autoGenerateProxyClasses(false)
+            ->entityManager('default_entity_manager')
+                ->connection('default')
+                ->autoMapping(false);
 
-    $dbal
-        ->connection('default')
-        ->driver('pdo_pgsql')
-        ->host('')
-        ->dbname('')
-        ->user('')
-        ->password('')
-        ->serverVersion('')
-        ->charset('');
-
-    $orm = $doctrine->orm();
-    $orm->defaultEntityManager('default');
-
-    $defaultEm = $orm->entityManager('default');
-
-    $defaultEm
-        ->connection('default')
-        ->namingStrategy('doctrine.orm.naming_strategy.underscore');
-
-    $defaultEm
-        ->resultCacheDriver()
-        ->type('pool')
-        ->pool('cache.doctrine.default.result');
-
-    $defaultEm
-        ->metadataCacheDriver()
-        ->type('pool')
-        ->pool('cache.doctrine.default.metadata');
-
-    $defaultEm
-        ->queryCacheDriver()
-        ->type('pool')
-        ->pool('cache.doctrine.default.query');
+    $doctrine
+        ->orm()
+            ->defaultEntityManager('default_entity_manager');
 };

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Symfony\Config\DoctrineMigrationsConfig;
 
 return static function(DoctrineMigrationsConfig $migrations): void
@@ -15,7 +17,7 @@ return static function(DoctrineMigrationsConfig $migrations): void
 
     $migrations->migrationsPath(
         'Shared\Infrastructure\PgSql\Migration',
-        '%kernel.project_dir%/migrations'
+        '%kernel.project_dir%/src/Shared/Infrastructure/PgSql/Migration'
     );
 
     $migrations
